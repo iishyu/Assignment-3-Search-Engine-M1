@@ -5,7 +5,7 @@ from glob import glob
 from collections import defaultdict
 
 from scraper import extract_page
-# import partial
+import partial
 import merge
 import report
 
@@ -47,7 +47,7 @@ def main():
             print(f"Indexed {doc_id} docs ({len(index)} terms in memory)")
 
         if in_memory >= PARTIAL_EVERY:
-            # partial_paths.append(partial.write_partial(index, n))
+            partial_paths.append(partial.write_partial(index, n))
             print(f"Wrote partial {n}")
             index.clear()
             n += 1
@@ -55,7 +55,7 @@ def main():
 
     # flush whatever is left
     if index:
-        # partial_paths.append(partial.write_partial(index, n))
+        partial_paths.append(partial.write_partial(index, n))
         print(f"Wrote partial {n}")
         index.clear()
 
