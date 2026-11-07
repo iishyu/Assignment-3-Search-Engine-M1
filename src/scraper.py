@@ -1,7 +1,7 @@
 import json
 from collections import defaultdict
 from bs4 import BeautifulSoup
-from bs4.element import NavigableString
+from bs4.element import NavigableString, Comment
 from nltk.stem import PorterStemmer
 from tokenizer import tokenize_text
 
@@ -36,7 +36,12 @@ def extract_page(file_path):
     for node in soup.descendants:
         if not isinstance(node, NavigableString):
             continue
-        #skips if html metadata inside <head>
+
+            
+        # Skip HTML comments
+        if isinstance(node, Comment):
+            continue
+        #skips if html metadata inside <head> and not title
         if node.find_parent("head") and not node.find_parent("title"):
             continue
 
