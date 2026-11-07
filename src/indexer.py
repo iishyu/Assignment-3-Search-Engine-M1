@@ -66,7 +66,7 @@ def main():
     with open(os.path.join("index", "docs.json"), "w", encoding="utf-8") as f:
         json.dump(docs, f)
 
-    stats = merge.merge_partials(partial_paths, "index")
+    stats = merge.merge_partials(partial_paths)
     print(f"Merged: {stats['unique_terms']} unique terms")
 
     report.make_report("index")
