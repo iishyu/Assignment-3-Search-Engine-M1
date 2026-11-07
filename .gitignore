@@ -1,1 +1,7 @@
 DEV/
+data/
+partial/
+index/
+__pycache__/
+.venv/
+.DS_Store

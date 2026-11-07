@@ -1,5 +1,4 @@
-"""Reading and writing partial (offloaded) inverted index files.
-
+"""
 Each partial file is JSON Lines, one term per line, in sorted term order:
     {"t":"search","p":[[0,2,6],[1,1,1]]}
 """
