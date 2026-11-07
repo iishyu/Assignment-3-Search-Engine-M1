@@ -2,7 +2,11 @@ import json
 from collections import defaultdict
 from bs4 import BeautifulSoup
 from bs4.element import NavigableString
+from nltk.stem import PorterStemmer
 from tokenizer import tokenize_text
+
+stemmer = PorterStemmer()
+stem_cache = {}
 
 def extract_page(file_path):
     #Opens/Loads File
@@ -32,6 +36,9 @@ def extract_page(file_path):
     for node in soup.descendants:
         if not isinstance(node, NavigableString):
             continue
+        #skips if html metadata inside <head>
+        if node.find_parent("head") and not node.find_parent("title"):
+            continue
 
         # Determine which category
         category = "body"
@@ -49,7 +56,11 @@ def extract_page(file_path):
 
         # Count tokens by category
         for token in tokenize_text(str(node)):
-            frequencies[token][category] += 1
+            if token not in stem_cache:
+                stem_cache[token] = stemmer.stem(token)
+
+            stemmed_token = stem_cache[token]
+            frequencies[stemmed_token][category] += 1
 
     return {
         "url": url,
