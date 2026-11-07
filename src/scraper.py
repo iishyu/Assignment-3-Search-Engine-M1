@@ -24,7 +24,7 @@ def extract_page(file_path):
     if not isinstance(html, str):
         html = ""
 
-    soup = BeautifulSoup(html, "html.parser")
+    soup = BeautifulSoup(html, "lxml")
     
  
     for tag in soup(["script", "style", "noscript"]):
