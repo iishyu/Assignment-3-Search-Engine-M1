@@ -3,8 +3,8 @@
 | Metric | Value |
 |---|---|
 | Number of indexed documents | 55393 |
-| Number of unique tokens (after stemming) | 1191297 |
-| Total index size (KB) | 218431.56 |
-| Index postings size (KB) | 184580.52 |
-| Lexicon size (KB) | 29184.51 |
+| Number of unique tokens (after stemming) | 1066555 |
+| Total index size (KB) | 202077.05 |
+| Index postings size (KB) | 172897.79 |
+| Lexicon size (KB) | 24512.73 |
 | Document map size (KB) | 4666.54 |

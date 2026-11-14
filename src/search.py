@@ -1,10 +1,10 @@
-
 import json
 import math
 import os
 from collections import Counter
 from nltk.stem import PorterStemmer
 from tokenizer import tokenize_text
+from urllib.parse import urldefrag
 
 INDEX_DIR = "index"
 stemmer = PorterStemmer()
@@ -63,21 +63,31 @@ class SearchEngine:
 
         for postings in postings_lists:
             df = len(postings)
-            idf = math.log((total_docs + 1) / (df + 1)) + 1
+            idf = math.log((total_docs) / df)
 
             for doc_id, tf, importance in postings:
                 if doc_id in matching_docs:
                     scores[doc_id] += (
                         (1 + math.log(max(tf, 1))) * idf
-                        + importance * idf
+                        + math.log(1 + importance) * idf
                     )
 
-        ranked = scores.most_common(top_k)
+        results = []
+        seen = set()
 
-        return [
-            (self.docs[str(doc_id)], round(score, 4))
-            for doc_id, score in ranked
-        ]
+        for doc_id, score in scores.most_common():
+            url, _ = urldefrag(self.docs[str(doc_id)])
+
+            if url in seen:
+                continue
+
+            seen.add(url)
+            results.append((url, round(score, 4)))
+
+            if len(results) == top_k:
+                break
+
+        return results
 
     def close(self):
         self.index_file.close()
