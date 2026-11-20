@@ -1,6 +1,7 @@
 import json
 import math
 import os
+import time
 from collections import Counter
 from nltk.stem import PorterStemmer
 from tokenizer import tokenize_text
@@ -105,13 +106,16 @@ def main():
             if query.lower() == "exit":
                 break
 
+            start = time.perf_counter()
             results = engine.search(query)
+            elapsed_ms = (time.perf_counter() - start) * 1000
+
 
             if not results:
                 print("No results found.")
                 continue
 
-            print(f"\nTop {len(results)} results:")
+            print(f"\nTop {len(results)} results ({elapsed_ms:.2f} ms):")
 
             for i, (url, score) in enumerate(results, 1):
                 print(f"{i}. {url}")

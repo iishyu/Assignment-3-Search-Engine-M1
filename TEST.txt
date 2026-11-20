@@ -1,0 +1,47 @@
+# Assignment 3 Test Queries
+
+### Queries that work poorly:
+
+#1 "the and of to in"
+
+#2 "master of software engineering"
+
+#3 "C++"
+
+#4 
+
+#5
+
+#6 
+
+#7
+
+#8
+
+#9
+
+#10
+
+
+
+### Queries that work well:
+
+#1 "machine learning"
+
+#2 "cristina lopes"
+
+#3 "informatics"
+
+#4 "graduate admissions"
+
+#5
+
+#6
+
+#7
+
+#8
+
+#9
+
+#10

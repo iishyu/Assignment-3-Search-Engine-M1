@@ -1,4 +1,4 @@
-# Assignment 3 
+# Assignment 3 Instructions
 
 ### Step 1: Creating the Index
 
@@ -9,10 +9,8 @@ Place the DEV file inside the 'data/DEV directory'.
 
 Run:
 
-'''
 bash
 python src/indexer.py data/DEV
-'''
 
 
 The program then processes the JSON files, extracts/tokenize the text, applies stemming, then creates an inverted index.
@@ -27,19 +25,15 @@ The generated index files are then stored in the 'index/' directory:
 
 After generating the index, run:
 
-'''
 bash
 python src/search.py
-'''
 
 The terminal should display: 
 
-'''
 Search Engine Ready!
 Type 'exit' to quit. 
 
 Enter query:
-''' 
 
 
 
@@ -48,4 +42,3 @@ Enter query:
 Type a search query and press Enter.
 
 The search engine will return up to five matching URLs (ranked by relevance scores) 
-
